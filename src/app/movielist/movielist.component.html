@@ -1,0 +1,12 @@
+<p>
+  movielist works!
+</p>
+
+<div *ngIf="movies">
+    <ul>
+      <li *ngFor="let movie of movies">
+        <span>{{movie.MovieID}} {{movie.Name}} {{movie.Details}} </span>
+      </li>
+    </ul>
+</div>
+<button (click)="refreshData()">Hae uusimmat elokuvat</button>

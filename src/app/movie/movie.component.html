@@ -1,0 +1,12 @@
+<p>
+  movie works!
+</p>
+
+<div ngIf="!movies">
+  <p>loading data..</p>
+</div>
+<div *ngIf="movies">
+  <ul>
+    <li ngFor="let movie of movies"></li>
+  </ul>
+</div>

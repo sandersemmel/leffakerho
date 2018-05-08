@@ -12,6 +12,13 @@ export class MovielistComponent implements OnInit {
   private _movieService: MovieService;
   movies: IMovie[] = [];
   movie: IMovie;
+  newMovie: IMovie;
+
+  movieName: string = null;
+  movieDetails: string = null;
+  meetingDate: Date = null;
+  movieId: number = null;
+
 
   constructor(movieService: MovieService) {
     this._movieService = movieService;
@@ -25,8 +32,16 @@ export class MovielistComponent implements OnInit {
                                                         this.movies = movies;
                                                         })
   }
-  refreshData() {
+  refreshData(): void {
     this.getMovies();
+  }
+  createNewMovie() {
+    this.newMovie = { Name: this.movieName, Details: this.movieDetails, MeetingDate: this.meetingDate, MovieID: this.movieId }
+  }
+  sendNewMovie() {
+    this.createNewMovie();
+  
+    this._movieService.sendNewMovie(this.newMovie);
   }
 
 }

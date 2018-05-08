@@ -10,3 +10,20 @@
     </ul>
 </div>
 <button (click)="refreshData()">Hae uusimmat elokuvat</button>
+
+<h2>Lisää uusi elokuva</h2>
+<div>
+  <label>
+    Nimi:
+    <input [(ngModel)]="movieName" /> {{movieName}}
+  </label>
+  <br />
+  <br />
+  <label>
+    Tiedot:
+    <input [(ngModel)]="movieDetails" /> {{movieDetails}}
+  </label>
+
+  <button (click)="sendNewMovie()">Lisää uusi elokuva </button>
+</div>
+

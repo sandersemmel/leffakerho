@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
@@ -24,7 +24,12 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'movielist', component: MovielistComponent },
+      { path: 'cars', component: CarComponent},
+      {path: '', redirectTo: 'cars', pathMatch: 'full'}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

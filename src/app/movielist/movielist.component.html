@@ -2,17 +2,32 @@
   movielist works!
 </p>
 
-<div *ngIf="movies">
-    <ul>
-      <li *ngFor="let movie of movies">
-        <span>{{movie.MovieID}} {{movie.Name}} {{movie.Details}} </span>
-      </li>
-    </ul>
-</div>
-<button (click)="refreshData()">Hae uusimmat elokuvat</button>
+<div *ngIf="movies" >
+  <button (click)="refreshData()">Hae uusimmat elokuvat</button>
+  <ul>
+    <li *ngFor="let movie of movies" (click)="editMovie(movie)" >
+      <span>
+        {{movie.MovieID}} {{movie.Name}} {{movie.Details}}
+      </span>
+    </li>
+  </ul>
 
-<h2>Lisää uusi elokuva</h2>
+  <div *ngIf="selectedMovie">
+    <h2>Elokuvan muokkaus</h2>
+    <label>
+      Uusi nimi:
+      <input [(ngModel)]="selectedMovie.Name" />
+    </label>
+    <br />
+    <label>Uudet tiedot:
+      <input [(ngModel)]="selectedMovie.Details"/>
+    </label>
+      <button (click)="updateMovie()">Tallenna tiedot</button>
+    <br />
+</div>
+
 <div>
+  <h2>Lisää uusi elokuva</h2>
   <label>
     Nimi:
     <input [(ngModel)]="movieName" /> {{movieName}}
@@ -23,6 +38,7 @@
     Tiedot:
     <input [(ngModel)]="movieDetails" /> {{movieDetails}}
   </label>
+
 
   <button (click)="sendNewMovie()">Lisää uusi elokuva </button>
 </div>

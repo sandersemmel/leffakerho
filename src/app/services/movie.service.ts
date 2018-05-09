@@ -7,8 +7,11 @@ import { Observable } from 'rxjs/Observable';
 export class MovieService {
   private _movieUrl: string = 'http://localhost:50898/api/movie';
   private _sendMovieUrl: string = 'http://localhost:50898/api/movie/post';
+  private _editMovieUrl: string = 'http://localhost:50898/api/movie/';
+
 
   private _contentType: string = 'application/x-www-form-urlencoded';
+  private _headers = new HttpHeaders({ 'Content-Type': this._contentType })
   private _http: HttpClient;
 
   constructor(http: HttpClient) {
@@ -24,8 +27,19 @@ export class MovieService {
       .set('name', movie.Name)
       .set('details', movie.Details).toString();
 
-    let headers = new HttpHeaders({'Content-Type': this._contentType} )
+    let headers = this._headers;
     this._http.post<IMovie>(this._sendMovieUrl, body, {headers} ).subscribe();
+  }
+  updateMovie(movie: IMovie): void {
+    this._editMovieUrl = this._editMovieUrl + movie.MovieID.toString();
+
+    const body = new HttpParams()
+      .set('name', movie.Name)
+      .set('details', movie.Details)
+      .set('movieid', movie.MovieID.toString());
+
+    let headers = this._headers;
+    this._http.post(this._editMovieUrl, body, { headers }).subscribe();
   }
 
 }

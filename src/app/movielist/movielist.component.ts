@@ -19,6 +19,9 @@ export class MovielistComponent implements OnInit {
   meetingDate: Date = null;
   movieId: number = null;
 
+  selectedMovie: IMovie = null;
+  update: number = 0;
+
 
   constructor(movieService: MovieService) {
     this._movieService = movieService;
@@ -40,8 +43,14 @@ export class MovielistComponent implements OnInit {
   }
   sendNewMovie() {
     this.createNewMovie();
-  
     this._movieService.sendNewMovie(this.newMovie);
+    this.refreshData();
+  }
+  editMovie(movie: IMovie): void {
+    this.selectedMovie = movie;
+  }
+  updateMovie() {
+    this._movieService.updateMovie(this.selectedMovie)
   }
 
 }

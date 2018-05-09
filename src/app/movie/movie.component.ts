@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IMovie } from '../Interfaces/IMovie';
 import { MovieService } from '../services/movie.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-movie',

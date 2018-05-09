@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { IMovie } from '../Interfaces/IMovie';
 
+
 @Component({
   selector: 'app-movielist',
   templateUrl: './movielist.component.html',
@@ -44,7 +45,10 @@ export class MovielistComponent implements OnInit {
   sendNewMovie() {
     this.createNewMovie();
     this._movieService.sendNewMovie(this.newMovie);
-    this.refreshData();
+    this.movieDetails = "";
+    this.movieName = "";
+    
+   
   }
   editMovie(movie: IMovie): void {
     this.selectedMovie = movie;

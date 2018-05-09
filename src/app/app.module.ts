@@ -9,6 +9,7 @@ import { TestComponent } from './test/test.component';
 import { MovielistComponent } from './movielist/movielist.component';
 import { PersonComponent } from './person/person.component';
 import { CarComponent } from './car/car.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CarComponent } from './car/car.component';
     TestComponent,
     MovielistComponent,
     PersonComponent,
-    CarComponent
+    CarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -2,44 +2,42 @@
   movielist works!
 </p>
 
-<div *ngIf="movies" >
-  <button (click)="refreshData()">Hae uusimmat elokuvat</button>
-  <ul>
-    <li *ngFor="let movie of movies" (click)="editMovie(movie)" >
-      <span>
-        {{movie.MovieID}} {{movie.Name}} {{movie.Details}}
-      </span>
-    </li>
-  </ul>
+<div *ngIf="movies" class="panel panel-default">
+  <div class="panel-body">
+    <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
+    <ul>
+      <li *ngFor="let movie of movies" (click)="editMovie(movie)">
+        <span>
+          {{movie.MovieID}} {{movie.Name}} {{movie.Details}}
+        </span>
+      </li>
+    </ul>
 
-  <div *ngIf="selectedMovie">
-    <h2>Elokuvan muokkaus</h2>
-    <label>
-      Uusi nimi:
-      <input [(ngModel)]="selectedMovie.Name" />
-    </label>
-    <br />
-    <label>Uudet tiedot:
-      <input [(ngModel)]="selectedMovie.Details"/>
-    </label>
-      <button (click)="updateMovie()">Tallenna tiedot</button>
-    <br />
+    <div *ngIf="selectedMovie" class="form-group">
+      <h2>Elokuvan muokkaus</h2>
+      <label>Uusi nimi:</label>
+      <input [(ngModel)]="selectedMovie.Name" class="form-control" />
+
+      <br />
+      <label>Uudet tiedot:</label>
+      <textarea [(ngModel)]="selectedMovie.Details" class="form-control" rows="5" id="comment"></textarea>
+      <button class="btn" (click)="updateMovie()">Tallenna tiedot</button>
+      <br />
+    </div>
+  </div>
 </div>
 
-<div>
-  <h2>Lisää uusi elokuva</h2>
-  <label>
-    Nimi:
-    <input [(ngModel)]="movieName" /> {{movieName}}
-  </label>
-  <br />
-  <br />
-  <label>
-    Tiedot:
-    <input [(ngModel)]="movieDetails" /> {{movieDetails}}
-  </label>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h2>Lisää uusi elokuva</h2>
+    <label>Elokuvan nimi</label>
+    <input [(ngModel)]="movieName" class="form-control" type="text" /> {{movieName}}
+    <br />
+    <br />
+    <label>Tiedot:</label>
+    <textarea [(ngModel)]="movieDetails" class="form-control" rows="5" id="comment"></textarea>
 
-
-  <button (click)="sendNewMovie()">Lisää uusi elokuva </button>
+    <button class="btn" (click)="sendNewMovie()">Lisää uusi elokuva </button>
+  </div>
 </div>
 

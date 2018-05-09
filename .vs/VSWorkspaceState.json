@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\e2e",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\cars",
-    "\\src\\app\\cats",
-    "\\src\\app\\dogs",
-    "\\src\\app\\hero-detail",
-    "\\src\\app\\heroadder",
-    "\\src\\app\\heroes",
-    "\\src\\app\\people"
+    "\\src\\app\\car",
+    "\\src\\app\\Classes",
+    "\\src\\app\\Interfaces",
+    "\\src\\app\\movielist",
+    "\\src\\app\\services",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\heroadder\\heroadder.component.html",
+  "SelectedNode": "\\package.json",
   "PreviewInSolutionExplorer": false
 }

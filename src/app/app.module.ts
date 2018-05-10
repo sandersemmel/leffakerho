@@ -10,7 +10,8 @@ import { MovielistComponent } from './movielist/movielist.component';
 import { PersonComponent } from './person/person.component';
 import { CarComponent } from './car/car.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { MovieFormComponent } from './Forms/movie-form/movie-form.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -19,15 +20,18 @@ import { NavbarComponent } from './navbar/navbar.component';
     MovielistComponent,
     PersonComponent,
     CarComponent,
-    NavbarComponent
+    NavbarComponent,
+    MovieFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: 'movielist', component: MovielistComponent },
-      { path: 'cars', component: CarComponent},
+      { path: 'cars', component: CarComponent },
+      { path: 'add', component: MovieFormComponent},
       {path: '', redirectTo: 'cars', pathMatch: 'full'}
     ])
   ],

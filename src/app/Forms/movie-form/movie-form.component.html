@@ -1,29 +1,37 @@
-<form #movieForm="ngForm" (ngSubmit)="submitMovie(movieForm)">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h1>Lisää uusi elokuva</h1></div>
-      <div class="panel-body">
 
-        <div class="form-group" [class.has-error]="movieLocalName.invalid && movieLocalName.touched" >
-          <label for="movieName">Elokuvan nimi</label>
-          <input required id="movieName" [(ngModel)]="movie.Name" class="form-control" type="text" name="movieName" #movieLocalName="ngModel" /> {{movie.Name}}
-          <span class="help-block" *ngIf="movieLocalName.invalid && movieLocalName.touched">
-            Elokuvan nimi puuttuu
-          </span>
-          <br />
-          <br />
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <form #movieForm="ngForm" (ngSubmit)="submitMovie(movieForm)">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Lisää uusi elokuva</div>
+        <div class="panel-body">
+
+          <div class="form-group" [class.has-error]="movieLocalName.invalid && movieLocalName.touched" [class.has-success]="movieLocalName.valid && movieLocalName.touched">
+            <label for="movieName">Elokuvan nimi</label>
+            <input required id="movieName" [(ngModel)]="movie.Name" class="form-control" type="text" name="movieName" #movieLocalName="ngModel" /> {{movie.Name}}
+            <span class="help-block" *ngIf="movieLocalName.invalid && movieLocalName.touched">
+              Elokuvan nimi puuttuu
+            </span>
           </div>
 
           <div class="form-group" [class.has-error]="movieLocalDetails.invalid && movieLocalDetails.touched" [class.has-success]="movieLocalDetails.valid">
             <label for="movieDetails">Tiedot:</label>
-            <textarea required id="movieDetails" [(ngModel)]="movie.Details" class="form-control" rows="5" id="comment" name="movieDetails" #movieLocalDetails="ngModel"></textarea> {{movie.Details}}
+            <textarea required id="movieDetails" [(ngModel)]="movie.Details" class="form-control" rows="5" name="movieDetails" #movieLocalDetails="ngModel"></textarea> {{movie.Details}}
             <span class="help-block" *ngIf="movieLocalDetails.invalid && movieLocalDetails.touched">
               Elokuvan tiedot puuttuvat
             </span>
           </div>
 
-          <div class="panel-footer">
-            <button class="btn" (click)="sendNewMovie()" [class.has-success]="movieForm.valid" [disabled]="movieForm.invalid">Lisää uusi elokuva </button>
-          </div>
+        </div>
+        <div class="panel-footer" [class.has-success]="submitted">
+          <button type="submit" class="btn btn-primary" [class.has-success]="movieForm.valid" [disabled]="movieForm.invalid">Lisää uusi elokuva </button>
+            <span *ngIf="submitted">
+              <br />
+              <strong>Uusi elokuva lisätty</strong>
+            </span>
         </div>
       </div>
-</form>
+    </form>
+  </div>
+</div>

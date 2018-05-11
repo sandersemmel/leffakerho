@@ -15,18 +15,21 @@ export class MovieFormComponent implements OnInit {
   movie: IMovie = { Name: '', Details: '', MeetingDate: null, MovieID: null };
   submitted: boolean = false;
  
-
-
   constructor(movieService: MovieService) {
     this._movieService = movieService;
   }
   ngOnInit() {
   }
-  sendNewMovie(): void {
+  sendNewMovie(movieForm: NgForm): void {
+    this.movie = {MovieID: null, Details: movieForm.value.movieDetails, Name: movieForm.value.movieName, MeetingDate: null}
     this._movieService.sendNewMovie(this.movie);
-    this.submitted = true;
+
   }
   submitMovie(movieForm: NgForm): void {
-    console.log(NgForm);
+    this.sendNewMovie(movieForm);
+    this.submitted = true;
+    movieForm.reset();
+
+
   }
 }

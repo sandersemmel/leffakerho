@@ -1,30 +1,38 @@
-<p>
-  movielist works!
-</p>
 
-<div *ngIf="movies" class="panel panel-default">
-  <div class="panel-body">
-    <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
-    <ul>
-      <li *ngFor="let movie of movies" (click)="editMovie(movie)">
-        <span>
-          {{movie.MovieID}} {{movie.Name}} {{movie.Details}}
-        </span>
-      </li>
-    </ul>
 
-    <div *ngIf="selectedMovie" class="form-group">
-      <h2>Elokuvan muokkaus</h2>
-      <label>Uusi nimi:</label>
-      <input [(ngModel)]="selectedMovie.Name" class="form-control" />
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10 col-lg-10">
+      <div>
+        <label>Etsi elokuva</label>
+        <input />
+      </div>
 
-      <br />
-      <label>Uudet tiedot:</label>
-      <textarea [(ngModel)]="selectedMovie.Details" class="form-control" rows="5" id="comment"></textarea>
-      <button class="btn" (click)="updateMovie()">Tallenna tiedot</button>
-      <br />
+      <div *ngIf="movies" class="panel panel-default">
+        <div class="panel-body">
+          <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let movie of movies" (click)="editMovie(movie)">
+              <span>
+                <h3>{{movie.Name}}</h3>
+                <br />
+                {{movie.Details}}
+              </span>
+            </li>
+          </ul>
+          <div *ngIf="selectedMovie" class="form-group">
+            <h2>Elokuvan muokkaus</h2>
+            <label>Uusi nimi:</label>
+            <input [(ngModel)]="selectedMovie.Name" class="form-control" />
+
+            <br />
+            <label>Uudet tiedot:</label>
+            <textarea [(ngModel)]="selectedMovie.Details" class="form-control" rows="5" id="comment"></textarea>
+            <button class="btn" (click)="updateMovie()">Tallenna tiedot</button>
+            <br />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-

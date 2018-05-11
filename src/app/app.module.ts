@@ -7,21 +7,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { MovielistComponent } from './movielist/movielist.component';
-import { PersonComponent } from './person/person.component';
-import { CarComponent } from './car/car.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MovieFormComponent } from './Forms/movie-form/movie-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
     MovielistComponent,
-    PersonComponent,
-    CarComponent,
     NavbarComponent,
-    MovieFormComponent
+    MovieFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule.forRoot(),
     RouterModule.forRoot([
       { path: 'movielist', component: MovielistComponent },
-      { path: 'cars', component: CarComponent },
-      { path: 'add', component: MovieFormComponent},
-      {path: '', redirectTo: 'cars', pathMatch: 'full'}
+      { path: 'add', component: MovieFormComponent },
+      {path: 'home', component: HomeComponent},
+      {path: '', redirectTo: 'home', pathMatch: 'full'}
     ])
   ],
   providers: [],

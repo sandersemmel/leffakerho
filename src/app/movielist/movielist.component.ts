@@ -12,16 +12,11 @@ import { IMovie } from '../Interfaces/IMovie';
 export class MovielistComponent implements OnInit {
   private _movieService: MovieService;
   movies: IMovie[] = [];
+  filteredMovies: IMovie[];
   movie: IMovie;
   newMovie: IMovie;
 
-  movieName: string = null;
-  movieDetails: string = null;
-  meetingDate: Date = null;
-  movieId: number = null;
-
   selectedMovie: IMovie = null;
-  update: number = 0;
 
 
   constructor(movieService: MovieService) {
@@ -39,22 +34,12 @@ export class MovielistComponent implements OnInit {
   refreshData(): void {
     this.getMovies();
   }
-  createNewMovie() {
-    this.newMovie = { Name: this.movieName, Details: this.movieDetails, MeetingDate: this.meetingDate, MovieID: this.movieId }
-  }
-  sendNewMovie() {
-    this.createNewMovie();
-    this._movieService.sendNewMovie(this.newMovie);
-    this.movieDetails = "";
-    this.movieName = "";
-    
-   
-  }
   editMovie(movie: IMovie): void {
     this.selectedMovie = movie;
   }
   updateMovie() {
     this._movieService.updateMovie(this.selectedMovie)
   }
+
 
 }

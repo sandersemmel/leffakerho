@@ -20,6 +20,7 @@ export class MovielistComponent implements OnInit {
   currentMovie: IMovie;
 
   selectedMovie: IMovie = null;
+  selectedMovieID: number;
 
 
   constructor(movieService: MovieService, currentMovieService: CurrentMovieService) {
@@ -29,22 +30,15 @@ export class MovielistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+
   }
   getMovies(): void {
-    this._movieService.getMovies().subscribe(movies => {
-                                                        this.movies = movies;
-                                                        })
+    this._movieService.getMovies().subscribe(value => this.movies = value );
   }
   refreshData(): void {
     this.getMovies();
   }
   editMovie(movie: IMovie): void {
     this.selectedMovie = movie;
-  }
-  updateMovie() {
-    this._movieService.updateMovie(this.selectedMovie)
-  }
-  setDifferentText() {
-    this._currentMovieService.setValue("vaihdettu teksti");
   }
 }

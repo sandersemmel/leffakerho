@@ -17,10 +17,10 @@
           <ul class="list-group">
 
             <li class="list-group-item" *ngFor="let movie of movies" (click)="editMovie(movie)">
-              <h3>{{movie.Name}}</h3>
+              <h3>{{movie.MovieName}}</h3>
               <br />
               {{movie.Details}}
-              <a [routerLink]="['/details']" href="/details">Details</a>
+              <a [routerLink]="['/details']" href="/details" >Details</a>
             </li>
           </ul>
           <div *ngIf="selectedMovie" class="form-group">

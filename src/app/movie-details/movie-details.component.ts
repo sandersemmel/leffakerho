@@ -3,6 +3,7 @@ import { IMovie } from '../Interfaces/IMovie';
 import { CurrentMovieService } from '../services/current-movie.service';
 import { Observable } from 'rxjs/Observable';
 import { MovieService } from '../services/movie.service';
+import { IMovieReviewDetails } from '../Interfaces/IMovieReviewDetails';
 
 
 @Component({
@@ -15,6 +16,9 @@ export class MovieDetailsComponent implements OnInit {
   private _currentMovieService: CurrentMovieService;
   private _movieService: MovieService;
   movie: IMovie;
+  movieReviews: IMovieReviewDetails[] = [];
+  movieReview: IMovieReviewDetails;
+  selectedMovie: number;
 
   constructor(currentMovieService: CurrentMovieService, movieService: MovieService) {
     this._currentMovieService = currentMovieService;
@@ -22,10 +26,18 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getMovie();
+    this.getSelectedMovie();
+    this.getMovie(this.selectedMovie);
+    this.getMovieReviews(this.selectedMovie);
   }
-  getMovie() {
-    this._movieService.getSingleMovieById(3).subscribe(value => this.movie = value);
+  getMovie(selectedMovie: number) {
+    this._movieService.getSingleMovieById(selectedMovie).subscribe(value => this.movie = value);
     console.log(this.movie);
+  }
+  getMovieReviews(selectedMovie: number) {
+    this._movieService.getMovieReviewsByMovieID(selectedMovie).subscribe(value => this.movieReviews = value);
+  }
+  getSelectedMovie() {
+    this.selectedMovie = this._movieService.getSelectedMovie();
   }
 }

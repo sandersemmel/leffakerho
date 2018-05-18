@@ -22,6 +22,18 @@
               Elokuvan tiedot puuttuvat
             </span>
           </div>
+          <div *ngIf="people">
+            <p *ngFor="let person of people"></p>
+          </div>
+         
+          <div *ngIf="people">
+            <label>Tuoja</label>
+            <select [(ngModel)]="person" name="person" required>
+              <option *ngFor="let person of people" [value]="person.PersonID">
+                {{person.FirstName}} {{person.LastName}}
+              </option>
+            </select>
+          </div>
 
         </div>
         <div class="panel-footer" [class.has-success]="submitted">

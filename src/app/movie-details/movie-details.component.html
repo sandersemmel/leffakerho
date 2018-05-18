@@ -15,8 +15,15 @@
     </tr>
   </table>
 
-  {{movie.MovieName}}
-  {{movie.BroughtBy}}
-  {{movie.Director}}
-  {{movie.Rating}}
+  Reviews:
+
+<div *ngIf="movieReviews">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let movieReview of movieReviews">
+            <span id="movieRating">{{movieReview.MovieRating}}</span>
+            {{movieReview.MovieReviewText}}
+            {{movieReview.ReviewerFirstName}}
+            {{movieReview.ReviewerLastName}}
+          </li>
+        </ul>
 </div>

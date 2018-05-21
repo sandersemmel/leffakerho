@@ -30,7 +30,6 @@ export class MovielistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
-
   }
   getMovies(): void {
     this._movieService.getMovies().subscribe(value => this.movies = value );
@@ -40,5 +39,11 @@ export class MovielistComponent implements OnInit {
   }
   editMovie(movie: IMovie): void {
     this.selectedMovie = movie;
+  }
+  setCurrentMovie(movie: IMovie){
+    this._currentMovieService.setCurrentMovie(movie);
+  }
+  setMessage(){
+    this._currentMovieService.setCurrentMessage("Message");
   }
 }

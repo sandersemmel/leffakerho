@@ -1,3 +1,23 @@
+<form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
+  <div class="form-group">
+      <label>MovieReviewText</label>
+      <input type="text" formControlName="movieReviewText" placeholder="reviewtext">
+  </div>
+
+  <div class="form-group">
+      <label>Reviewer</label>
+      <select formControlName="reviewer">
+        <option *ngFor="let person of people" [value]="person.PersonID">{{person.FirstName}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label>Rating</label>
+      <input type="number" formControlName="movieRating" placeholder="number">
+  </div>
+  <button>Lisää uusi arvostelu</button>
+</form>
+
 <div *ngIf="movie">
   <table>
     <tr>
@@ -11,7 +31,7 @@
       <td>{{movie.BroughtBy}}</td>
       <td>{{movie.Director}}</td>
       <td>{{movie.Rating}}</td>
-      <td></td>
+      <td></td>this._currentMovieService.currentMessage.subscribe((value) => console.log(value));
     </tr>
   </table>
 
@@ -26,4 +46,13 @@
             {{movieReview.ReviewerLastName}}
           </li>
         </ul>
+</div>
+
+<div>
+  {{shownMovie.MovieID}}
+  {{shownMovie.MovieName}}
+</div>
+
+<div *ngIf="message">
+  {{message}}
 </div>

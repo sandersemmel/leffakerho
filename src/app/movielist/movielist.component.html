@@ -20,7 +20,7 @@
               <h3>{{movie.MovieName}}</h3>
               <br />
               {{movie.Details}}
-              <a [routerLink]="['/details']" href="/details" >Details</a>
+              <a [routerLink]="['/details']" href="/details" (click)="setCurrentMovie(movie)">Details</a>
             </li>
           </ul>
           <div *ngIf="selectedMovie" class="form-group">
@@ -41,3 +41,4 @@
 </div>
 
 <button (click)="setDifferentText()">Vaihda teksti</button>
+<button (click)="setMessage()">Testaa tekstin vaihtoa</button>

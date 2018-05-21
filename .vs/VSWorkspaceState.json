@@ -6,7 +6,7 @@
     "\\src\\app",
     "\\src\\app\\Forms",
     "\\src\\app\\Forms\\movie-form",
-    "\\src\\app\\Interfaces",
+    "\\src\\app\\movie-details",
     "\\src\\app\\movielist",
     "\\src\\app\\navbar",
     "\\src\\app\\services"

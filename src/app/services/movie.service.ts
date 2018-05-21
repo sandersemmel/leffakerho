@@ -8,7 +8,7 @@ import { IPerson } from '../Interfaces/IPerson';
 @Injectable()
 export class MovieService {
   private _movieUrl: string = 'http://localhost:49579/api/movies/getall';
-  private _sendMovieUrl: string = 'http://localhost:49579/api/movies/add';
+  private _sendMovieUrl: string = 'http://localhost:49579/api/movies/add'; 
   private _editMovieUrl: string = 'http://localhost:50898/api/movie/';
   private _singleMovieUrl: string = 'http://localhost:49579/api/moviedetails/';
   private _movieReviewDetailsUrl: string = 'http://localhost:49579/api/moviereviewdetails/';
@@ -24,6 +24,8 @@ export class MovieService {
     this._http = http;
   }
 
+
+
   getMovies(): Observable<IMovie[]> {
     return this._http.get<IMovie[]>(this._movieUrl);
   }
@@ -36,7 +38,13 @@ export class MovieService {
     return this._http.get<IMovieReviewDetails[]>(urlWithId);
   }
   sendNewMovie(movie: IMovie) {
-    this._http.post(this._sendMovieUrl,this._headers);
+    const body = new HttpParams()
+      .set('MovieName', movie.MovieName)
+      .set('BroughtBy', movie.BroughtBy.toString());
+
+    let headers = this._headers;  
+    this._http.post(this._sendMovieUrl,body,{headers}).subscribe();
+
   }
   getPersonList(): Observable<IPerson[]> {
     return this._http.get<IPerson[]>(this._getPersonListUrl);

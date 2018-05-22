@@ -26,7 +26,6 @@ export class MovieService {
 
   private movieID: number;
 
-
   private currentMovieBehaviourSubject = new BehaviorSubject<IMovie>(null);
   currentMovie = this.currentMovieBehaviourSubject.asObservable();
 
@@ -43,8 +42,8 @@ export class MovieService {
     this._http.get<IMovie>(urlWithId).subscribe(m=>this.subjectMovie.next(m));
     return null;
   }
-  getMovieReviewsByMovieID(movieID: number): Observable<IMovieReviewDetails[]>  {
-    let urlWithId: string = this._movieReviewDetailsUrl.concat(movieID.toString());
+  getMovieReviewsByMovieID(): Observable<IMovieReviewDetails[]>  {
+    let urlWithId: string = this._movieReviewDetailsUrl.concat(this.movieID.toString());
     return this._http.get<IMovieReviewDetails[]>(urlWithId);
   }
   sendNewMovie(movie: IMovie) {
@@ -64,7 +63,7 @@ export class MovieService {
       .set('MovieReviewText', formData.movieReviewText)
       .set('MovieRating', formData.movieRating)
       .set('Reviewer', formData.reviewer)
-      .set('MovieID', "11") // Change later to the correct movie
+      .set('MovieID', this.movieID.toString()) // Change later to the correct movie
     let headers = this._headers;
 
     this._http.post(this._sendMovieReviewUrl,body,{headers}).subscribe();

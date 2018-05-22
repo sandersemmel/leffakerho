@@ -1,8 +1,9 @@
 <div *ngIf="movieWithReviews">
   {{movieWithReviews.MovieName}}
-  {{movieWithReviews.MovieRating}}
+  {{movieWithReviews.Rating}}
   {{movieWithReviews.BroughtBy}}
 </div>
+
 <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
   <div class="form-group">
       <label>MovieReviewText</label>
@@ -39,8 +40,9 @@
       <td></td>
     </tr>
   </table>
+</div>
 
-  Reviews:
+Reviews:
 
 <div *ngIf="movieReviews">
         <ul class="list-group">
@@ -52,3 +54,4 @@
           </li>
         </ul>
 </div>
+

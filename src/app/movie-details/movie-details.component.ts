@@ -60,17 +60,17 @@ export class MovieDetailsComponent implements OnInit {
     })
     // TESTI, REMOVE AFTER
     this.getCurrentMovie2();
+    this.getMovieReviews();
 
-    // this.getSelectedMovie();
-    // this.getMovie(this.selectedMovie);
-    // this.getMovieReviews(this.selectedMovie);
   }
   getMovie(selectedMovie: number) {
     this._movieService.getSingleMovieById(selectedMovie).subscribe(value => this.movie = value);
     console.log(this.movie);
   }
-  getMovieReviews(selectedMovie: number) {
-    this._movieService.getMovieReviewsByMovieID(selectedMovie).subscribe(value => this.movieReviews = value);
+  getMovieReviews() {
+    this._movieService.getMovieReviewsByMovieID().subscribe(value =>{this.movieReviews = value
+    console.log(value);
+    } );
   }
   getPeople(){
     this._movieService.getPersonList().subscribe((value)=> this.people = value);

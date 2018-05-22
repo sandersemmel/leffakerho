@@ -8,7 +8,7 @@ import { CurrentMovieService } from '../services/current-movie.service';
   selector: 'app-movielist',
   templateUrl: './movielist.component.html',
   styleUrls: ['./movielist.component.css'],
-  providers: [MovieService, CurrentMovieService]
+  providers: [CurrentMovieService]
 })
 export class MovielistComponent implements OnInit {
   private _movieService: MovieService;
@@ -41,9 +41,10 @@ export class MovielistComponent implements OnInit {
     this.selectedMovie = movie;
   }
   setCurrentMovie(movie: IMovie){
-    this._currentMovieService.setCurrentMovie(movie);
+    this._movieService.getSingleMovieById(movie.MovieID);
   }
-  setMessage(){
-    this._currentMovieService.setCurrentMessage("Message");
+  // TEST, REMOVE AFTER
+  setCurrentMovie2(movie: IMovie){
+    this._movieService.setCurrentMovie2(movie.MovieID);
   }
 }

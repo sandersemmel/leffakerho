@@ -31,7 +31,7 @@
       <td>{{movie.BroughtBy}}</td>
       <td>{{movie.Director}}</td>
       <td>{{movie.Rating}}</td>
-      <td></td>this._currentMovieService.currentMessage.subscribe((value) => console.log(value));
+      <td></td>
     </tr>
   </table>
 
@@ -48,10 +48,14 @@
         </ul>
 </div>
 
-<div>
-  {{shownMovie.MovieID}}
-  {{shownMovie.MovieName}}
+
+
+  {{currentMovie.MovieID}}
+
+<div *ngIf="currentMovie">
+  {{currentMovie.MovieID}}
 </div>
+
 
 <div *ngIf="message">
   {{message}}

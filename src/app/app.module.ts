@@ -12,6 +12,7 @@ import { MovieFormComponent } from './Forms/movie-form/movie-form.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { MovieService } from './services/movie.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
       {path: '', redirectTo: 'home', pathMatch: 'full'}
     ])
   ],
-  providers: [],
+  providers: [MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

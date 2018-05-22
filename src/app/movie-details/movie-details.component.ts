@@ -12,7 +12,7 @@ import { IPerson } from '../Interfaces/IPerson';
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css'],
-  providers: [MovieService,CurrentMovieService, FormBuilder]
+  providers: [CurrentMovieService, FormBuilder]
 })
 export class MovieDetailsComponent implements OnInit {
   private _currentMovieService: CurrentMovieService;
@@ -25,6 +25,9 @@ export class MovieDetailsComponent implements OnInit {
   shownMovie: IMovie;
   ObservableMovie: Observable<IMovie>;
   message: string;
+  currentMovie: IMovie;
+  movieWithReviews: IMovie;
+  
 
   //Form for reviewer
   private formbuilder: FormBuilder;
@@ -39,13 +42,6 @@ export class MovieDetailsComponent implements OnInit {
     this._movieService = movieService;
     this.formbuilder = formbuilder;
 
-    this._currentMovieService.getCurrentMovie().subscribe((value)=>{this.shownMovie = value 
-      console.log("currentMovie",value)});
-
-      this._currentMovieService.currentMessage.subscribe((value) => {this.message = value
-      console.log(value);
-      });
-      this._currentMovieService.currentMovieObservable.subscribe((value) => console.log(value));
   }
 
   handleSubmit(formGroupMovieReview: NgForm){
@@ -57,14 +53,13 @@ export class MovieDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.getPeople();
-    this._currentMovieService.currentMessage.subscribe((value)=>this.message = value);
-
-
     this.formGroupMovieReview = this.formbuilder.group({
       'movieReviewText': [null, Validators.required],
       'reviewer': [null, Validators.required],
       'movieRating': [null, Validators.required]
     })
+    // TESTI, REMOVE AFTER
+    this.getCurrentMovie2();
 
     // this.getSelectedMovie();
     // this.getMovie(this.selectedMovie);
@@ -77,12 +72,11 @@ export class MovieDetailsComponent implements OnInit {
   getMovieReviews(selectedMovie: number) {
     this._movieService.getMovieReviewsByMovieID(selectedMovie).subscribe(value => this.movieReviews = value);
   }
-  getSelectedMovie() {
-    this._currentMovieService.getCurrentMovie().subscribe((value)=>{this.shownMovie = value 
-                                                               console.log(value)},(error)=>console.log(error));
-  }
   getPeople(){
     this._movieService.getPersonList().subscribe((value)=> this.people = value);
   }
-
+  //TESTI, Remove after
+  getCurrentMovie2(){
+    this._movieService.getSingleMovieById2().subscribe((value)=> this.movieWithReviews = value);
+  }
 }

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { IMovieReviewDetails } from '../Interfaces/IMovieReviewDetails';
 import { IPerson } from '../Interfaces/IPerson';
 import { NgForm } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class MovieService {
@@ -15,15 +16,23 @@ export class MovieService {
   private _movieReviewDetailsUrl: string = 'http://localhost:49579/api/moviereviewdetails/';
   private _getPersonListUrl: string = 'http://localhost:49579/api/person/getall';
   private _sendMovieReviewUrl: string = 'http://localhost:49579/api/moviereviewdetails/add';
-
+  _currentMovie: IMovie;
+  subjectMovie: BehaviorSubject<IMovie>;
 
   private _contentType: string = 'application/x-www-form-urlencoded';
   private _headers = new HttpHeaders({ 'Content-Type': this._contentType })
   private _http: HttpClient;
   private movie: IMovie;
 
+  private movieID: number;
+
+
+  private currentMovieBehaviourSubject = new BehaviorSubject<IMovie>(null);
+  currentMovie = this.currentMovieBehaviourSubject.asObservable();
+
   constructor(http: HttpClient) {
     this._http = http;
+    
   }
 
   getMovies(): Observable<IMovie[]> {
@@ -31,7 +40,8 @@ export class MovieService {
   }
   getSingleMovieById(movieId: number): Observable<IMovie>{
     let urlWithId: string = this._singleMovieUrl.concat(movieId.toString());
-    return this._http.get<IMovie>(urlWithId);
+    this._http.get<IMovie>(urlWithId).subscribe(m=>this.subjectMovie.next(m));
+    return null;
   }
   getMovieReviewsByMovieID(movieID: number): Observable<IMovieReviewDetails[]>  {
     let urlWithId: string = this._movieReviewDetailsUrl.concat(movieID.toString());
@@ -58,6 +68,16 @@ export class MovieService {
     let headers = this._headers;
 
     this._http.post(this._sendMovieReviewUrl,body,{headers}).subscribe();
+  }
+
+  // TEST
+  setCurrentMovie2(Id: number){
+    this.movieID = Id;
+    console.log("movieid", this.movieID);
+  }
+  getSingleMovieById2(): Observable<IMovie>{
+    let urlWithId: string = this._singleMovieUrl.concat(this.movieID.toString());
+    return this._http.get<IMovie>(urlWithId); 
   }
 
 }

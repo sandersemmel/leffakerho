@@ -1,6 +1,9 @@
 export interface IMovie {
   MovieID: number;
-  Name: string;
-  Details: string;
-  MeetingDate: Date;
+  MovieName: string;
+  BroughtBy: number;
+  Director: string;
+  Rating: number;
+  AmountOfRatings: number;
+  RatingSum: number;
 }

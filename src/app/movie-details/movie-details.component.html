@@ -4,6 +4,7 @@
   {{movieWithReviews.BroughtBy}}
 </div>
 
+<<<<<<< HEAD
 <button (click)="showFormToggle()">Näytä uuden arvostelun lisääminen</button>
   <div [hidden]="!showForm">
       <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
@@ -27,6 +28,28 @@
         </form>
   </div>
 
+=======
+<form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
+  <div class="form-group">
+      <label>MovieReviewText</label>
+      <input type="text" formControlName="movieReviewText" placeholder="reviewtext">
+  </div>
+
+  <div class="form-group">
+      <label>Reviewer</label>
+      <select formControlName="reviewer">
+        <option *ngFor="let person of people" [value]="person.PersonID">{{person.FirstName}}</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+      <label>Rating</label>
+      <input type="number" formControlName="movieRating" placeholder="number">
+  </div>
+  <button>Lisää uusi arvostelu</button>
+</form>
+
+>>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
 <div *ngIf="movie">
   <table>
     <tr>
@@ -45,9 +68,13 @@
   </table>
 </div>
 
+<<<<<<< HEAD
 <br/>
 
 Arvostelut:
+=======
+Reviews:
+>>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
 
 <div *ngIf="movieReviews">
         <ul class="list-group">

@@ -27,7 +27,10 @@ export class MovieDetailsComponent implements OnInit {
   message: string;
   currentMovie: IMovie;
   movieWithReviews: IMovie;
+<<<<<<< HEAD
   showForm: boolean = false;
+=======
+>>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
   
 
   //Form for reviewer
@@ -80,7 +83,10 @@ export class MovieDetailsComponent implements OnInit {
   getCurrentMovie2(){
     this._movieService.getSingleMovieById2().subscribe((value)=> this.movieWithReviews = value);
   }
+<<<<<<< HEAD
   showFormToggle(){
     this.showForm = !this.showForm;
   }
+=======
+>>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
 }

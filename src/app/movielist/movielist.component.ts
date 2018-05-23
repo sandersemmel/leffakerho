@@ -1,35 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieService } from '../services/movie.service';
 import { IMovie } from '../Interfaces/IMovie';
+import { CurrentMovieService } from '../services/current-movie.service';
 
 
 @Component({
   selector: 'app-movielist',
   templateUrl: './movielist.component.html',
   styleUrls: ['./movielist.component.css'],
-  providers: [MovieService]
+  providers: [CurrentMovieService]
 })
 export class MovielistComponent implements OnInit {
   private _movieService: MovieService;
+  private _currentMovieService: CurrentMovieService;
   movies: IMovie[] = [];
   filteredMovies: IMovie[];
   movie: IMovie;
   newMovie: IMovie;
+  currentMovie: IMovie;
 
   selectedMovie: IMovie = null;
+  selectedMovieID: number;
 
 
-  constructor(movieService: MovieService) {
+  constructor(movieService: MovieService, currentMovieService: CurrentMovieService) {
     this._movieService = movieService;
+    this._currentMovieService = currentMovieService;
   }
 
   ngOnInit(): void {
     this.getMovies();
   }
   getMovies(): void {
-    this._movieService.getMovies().subscribe(movies => {
-                                                        this.movies = movies;
-                                                        })
+    this._movieService.getMovies().subscribe(value => this.movies = value );
   }
   refreshData(): void {
     this.getMovies();
@@ -37,9 +40,11 @@ export class MovielistComponent implements OnInit {
   editMovie(movie: IMovie): void {
     this.selectedMovie = movie;
   }
-  updateMovie() {
-    this._movieService.updateMovie(this.selectedMovie)
+  setCurrentMovie(movie: IMovie){
+    this._movieService.getSingleMovieById(movie.MovieID);
   }
-
-
+  // TEST, REMOVE AFTER
+  setCurrentMovie2(movie: IMovie){
+    this._movieService.setCurrentMovie2(movie.MovieID);
+  }
 }

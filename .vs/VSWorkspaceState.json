@@ -4,13 +4,13 @@
     "\\e2e",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\car",
-    "\\src\\app\\Classes",
-    "\\src\\app\\Interfaces",
+    "\\src\\app\\Forms",
+    "\\src\\app\\Forms\\movie-form",
+    "\\src\\app\\movie-details",
     "\\src\\app\\movielist",
-    "\\src\\app\\services",
-    "\\src\\assets"
+    "\\src\\app\\navbar",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\app\\services\\movie.service.ts",
   "PreviewInSolutionExplorer": false
 }

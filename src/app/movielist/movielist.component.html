@@ -11,13 +11,16 @@
       <div *ngIf="movies" class="panel panel-default">
         <div class="panel-body">
           <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
+          <div *ngIf="movies.length == 0">
+            Ei elokuvia elokuvia
+          </div>
           <ul class="list-group">
+
             <li class="list-group-item" *ngFor="let movie of movies" (click)="editMovie(movie)">
-              <span>
-                <h3>{{movie.Name}}</h3>
-                <br />
-                {{movie.Details}}
-              </span>
+              <h3>{{movie.MovieName}}</h3>
+              <br />
+              {{movie.Details}}
+              <a [routerLink]="['/details']" href="/details" (click)="setCurrentMovie2(movie)">Details</a>
             </li>
           </ul>
           <div *ngIf="selectedMovie" class="form-group">

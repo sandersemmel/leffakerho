@@ -1,62 +1,58 @@
 <div *ngIf="movieWithReviews">
-  {{movieWithReviews.MovieName}}
-  {{movieWithReviews.Rating}}
-  {{movieWithReviews.BroughtBy}}
-</div>
-
-<button (click)="showFormToggle()">Näytä uuden arvostelun lisääminen</button>
-  <div [hidden]="!showForm">
-      <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
-          <div class="form-group">
-              <label>MovieReviewText</label>
-              <input type="text" formControlName="movieReviewText" placeholder="reviewtext">
-          </div>
-        
-          <div class="form-group">
-              <label>Reviewer</label>
-              <select formControlName="reviewer">
-                <option *ngFor="let person of people" [value]="person.PersonID">{{person.FirstName}}</option>
-              </select>
-          </div>
-        
-          <div class="form-group">
-              <label>Rating</label>
-              <input type="number" formControlName="movieRating" placeholder="number">
-          </div>
-          <button>Lisää uusi arvostelu</button>
-        </form>
-  </div>
-
-<div *ngIf="movie">
-  <table>
-    <tr>
-      <th>MovieName</th>
-      <th>BroughtBy</th>
-      <th>Director</th>
-      <th>Rating</th>
-    </tr>
-    <tr>
-      <td>{{movie.MovieName}}</td>
-      <td>{{movie.BroughtBy}}</td>
-      <td>{{movie.Director}}</td>
-      <td>{{movie.Rating}}</td>
-      <td></td>
-    </tr>
-  </table>
+    <div class="card">
+      <h5 class="card-header">{{movieWithReviews.MovieName}}</h5>
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating}}</h6>
+          <p class="card-text"></p>
+        </div>
+      </div>
 </div>
 
 <br/>
 
-Arvostelut:
+<button (click)="showFormToggle()" class="btn btn-primary">Näytä uuden arvostelun lisääminen</button>
 
-<div *ngIf="movieReviews">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let movieReview of movieReviews">
-            <span id="movieRating">{{movieReview.MovieRating}}</span>
-            {{movieReview.MovieReviewText}}
-            {{movieReview.ReviewerFirstName}}
-            {{movieReview.ReviewerLastName}}
-          </li>
-        </ul>
+<br/>
+
+<!--FORM -->
+<div [hidden]="!showForm" class="panel panel-primary">
+    <div class="panel-heading">Lisää uusi arvostelu</div>
+    <div class="panel-body">
+      <div>
+          <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
+              <div class="form-group">
+                  <label for="movieReviewText">Arvostelu</label>
+                  <br/>
+                  <textarea class="form-control" type="text" formControlName="movieReviewText" placeholder="Arvostelu" rows="3"></textarea>
+              </div>
+            
+              <div class="form-group">
+                  <label>Arvostelija</label>
+                  <select class="form-control" formControlName="reviewer">
+                    <option *ngFor="let person of people" [value]="person.PersonID">{{person.FirstName}}</option>
+                  </select>
+              </div>
+            
+              <div class="form-group">
+                  <label>Arvosana</label>
+                  <br/>
+                  <input class="form-control" type="number" formControlName="movieRating" placeholder="Arvosana">
+              </div>
+              <button class="btn btn-primary mb-2">Lisää uusi arvostelu</button>
+            </form>
+        </div>
+    </div>
 </div>
 
+
+<br/>
+
+<div *ngIf="movieReviews">
+    <div class="card" *ngFor="let movieReview of movieReviews">
+        <div class="card-body">
+          <h5 class="card-title">{{movieReview.ReviewerFirstName}} {{movieReview.ReviewerLastName}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieReview.MovieRating}}</h6>
+          <p class="card-text">{{movieReview.MovieReviewText}}</p>
+        </div>
+      </div>
+</div>

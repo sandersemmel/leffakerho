@@ -57,8 +57,10 @@ export class MovieDetailsComponent implements OnInit {
     console.log("reviewer", formGroupMovieReview.value.reviewer);
     console.log("movieRating",formGroupMovieReview.value.movieRating);
     this._movieService.sendNewMovieReview(formGroupMovieReview); // Send new review
-    this.displayNewReviewAdded();
-    formGroupMovieReview.reset();
+    this.displayNewReviewAdded();  // display alert
+    formGroupMovieReview.reset(); // Reset form
+    this.getMovieReviews();
+    this.getCurrentMovie2();
   }
 
   ngOnInit() {
@@ -68,7 +70,6 @@ export class MovieDetailsComponent implements OnInit {
       'reviewer': [null, Validators.required],
       'movieRating': [null, Validators.required]
     })
-    // TESTI, REMOVE AFTER
     this.getCurrentMovie2();
     this.getMovieReviews();
 

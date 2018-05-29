@@ -6,7 +6,7 @@
       <h5 class="card-header">{{movieWithReviews.MovieName}}</h5>
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating | number: '1.2-2'}} 
-            <p *ngIf="noReviews">Elokuvalla ei ole arvosteluja.</p>
+            <p *ngIf="movieReviews.length == 0">Elokuvalla ei ole arvosanaa.</p>
           </h6>
           <p class="card-text"></p>
           <button class="btn-primary" (click)="editing()" >Muokkaa</button>
@@ -79,8 +79,9 @@
         </div>
       </div>
 </div>
+</div>
 
+<!--When Movie is removed-->
 <div class="alert alert-success" *ngIf="hideCurrentMovieBoolean">
-  <p>Elokuva poistettu</p>
-</div>
-</div>
+    <p>Elokuva poistettu</p>
+  </div>

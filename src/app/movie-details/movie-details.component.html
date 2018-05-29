@@ -1,10 +1,21 @@
+<div class="container">
+<div [hidden]="hideCurrentMovieBoolean">
 <div *ngIf="movieWithReviews">
     <div class="card">
       <h5 class="card-header">{{movieWithReviews.MovieName}}</h5>
         <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating | number: '1.2-2'}}</h6>
           <p class="card-text"></p>
+          <button class="btn-primary" (click)="editing()" >Muokkaa</button>
+          <button class="btn-primary" (click)="save()" >Tallenna</button>
+          <button class="btn-danger" (click)="remove()">Poista</button>
+          
         </div>
+      </div>
+
+      <div *ngIf="editingBoolean">
+        <label>Nimi:</label>
+          <input type="text" [(ngModel)]="movieWithReviews.MovieName"/>
       </div>
 </div>
 
@@ -13,6 +24,10 @@
 <button (click)="showFormToggle()" class="btn btn-primary">Näytä uuden arvostelun lisääminen</button>
 
 <br/>
+
+<div *ngIf="noReviewsToShow">
+  <p>Elokuvalla ei ole arvosteluja</p>
+</div>
 
 <!--FORM -->
 <div [hidden]="!showForm" class="panel panel-primary">
@@ -39,15 +54,20 @@
                   <input class="form-control" type="number" formControlName="movieRating" placeholder="Arvosana">
               </div>
               <button class="btn btn-primary mb-2">Lisää uusi arvostelu</button>
+              <div class="panel-footer">
+                <div class="alert alert-success">
+                    <strong>Uusi arvostelu lisättiin.</strong>
+                </div>
+              </div>
             </form>
         </div>
     </div>
 </div>
-
+</div>
 
 <br/>
 
-<div *ngIf="movieReviews">
+<div *ngIf="movieReviews" [(ngModel)]="movieReviews">
     <div class="card" *ngFor="let movieReview of movieReviews">
         <div class="card-body">
           <h5 class="card-title">{{movieReview.ReviewerFirstName}} {{movieReview.ReviewerLastName}}</h5>
@@ -55,4 +75,9 @@
           <p class="card-text">{{movieReview.MovieReviewText}}</p>
         </div>
       </div>
+</div>
+
+<div class="alert alert-success" *ngIf="hideCurrentMovieBoolean">
+  <p>Elokuva poistettu</p>
+</div>
 </div>

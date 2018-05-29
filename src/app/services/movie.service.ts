@@ -12,10 +12,12 @@ export class MovieService {
   private _movieUrl: string = 'http://localhost:49579/api/movies/getall';
   private _sendMovieUrl: string = 'http://localhost:49579/api/movies/add'; 
   private _editMovieUrl: string = 'http://localhost:50898/api/movie/';
-  private _singleMovieUrl: string = 'http://localhost:49579/api/moviedetails/';
-  private _movieReviewDetailsUrl: string = 'http://localhost:49579/api/moviereviewdetails/';
+  private _singleMovieUrl: string = 'http://localhost:49579/api/movies/';
+  private _movieReviewDetailsUrl: string = 'http://localhost:49579/api/moviereviews/';
   private _getPersonListUrl: string = 'http://localhost:49579/api/person/getall';
-  private _sendMovieReviewUrl: string = 'http://localhost:49579/api/moviereviewdetails/add';
+  private _sendMovieReviewUrl: string = 'http://localhost:49579/api/moviereviews/add';
+  private _deleteMovieUrl: string = 'http://localhost:49579/api/movie/remove/';
+  private _deleteMovieReviewsUrl: string = 'http://localhost:49579/api/moviereviews/remove/';
   _currentMovie: IMovie;
   subjectMovie: BehaviorSubject<IMovie>;
 
@@ -77,6 +79,15 @@ export class MovieService {
   getSingleMovieById2(): Observable<IMovie>{
     let urlWithId: string = this._singleMovieUrl.concat(this.movieID.toString());
     return this._http.get<IMovie>(urlWithId); 
+  }
+  removeSingleMovie(movie: IMovie): Observable<Object>{
+    let removable = this._deleteMovieUrl + movie.MovieID.toString();
+    return this._http.delete(removable);
+  }
+  removeMovieReviews(movieID: number): Observable<Object>{
+    // REMOVE MOVIEREVIEWS
+    let removable = this._deleteMovieReviewsUrl+movieID.toString();
+    return this._http.delete(removable);
   }
 
 }

@@ -4,6 +4,4 @@ export interface IMovie {
   BroughtBy: number;
   Director: string;
   Rating: number;
-  AmountOfRatings: number;
-  RatingSum: number;
 }

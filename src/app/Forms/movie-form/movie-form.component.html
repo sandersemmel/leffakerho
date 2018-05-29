@@ -1,4 +1,5 @@
 
+<div class="container">
 <div class="row">
   <div class="col-xs-12 col-lg-6">
     <form #movieForm="ngForm" (ngSubmit)="submitMovie(movieForm)">
@@ -39,11 +40,13 @@
         <div class="panel-footer" [class.has-success]="submitted">
           <button type="submit" class="btn btn-primary" [class.has-success]="movieForm.valid" [disabled]="movieForm.invalid">Lisää uusi elokuva </button>
             <span *ngIf="submitted">
-              <br />
-              <strong>Uusi elokuva lisätty</strong>
+              <div class="alert alert-success">
+                  <strong>Uusi elokuva lisätty</strong>
+              </div>
             </span>
         </div>
       </div>
     </form>
   </div>
+</div>
 </div>

@@ -13,7 +13,7 @@ import { IPerson } from '../../Interfaces/IPerson';
 })
 export class MovieFormComponent implements OnInit {
   private _movieService: MovieService;
-  movie: IMovie = { MovieName: '', MovieID: null, AmountOfRatings: null, BroughtBy: null,Director: '', Rating: null, RatingSum: null };
+  movie: IMovie = { MovieName: '', MovieID: null, BroughtBy: null,Director: '', Rating: null };
   submitted: boolean = false;
   people: IPerson[] = [];
   selectedPerson: IPerson;
@@ -28,12 +28,10 @@ export class MovieFormComponent implements OnInit {
 
     this.movie = {
       MovieID: null,
-      AmountOfRatings: null,
       MovieName: movieForm.value.movieName,
       BroughtBy: movieForm.value.person,
       Director: '',
-      Rating: null,
-      RatingSum: null
+      Rating: null
     }
     this._movieService.sendNewMovie(this.movie);
   }

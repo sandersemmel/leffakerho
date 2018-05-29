@@ -27,10 +27,11 @@ export class MovieDetailsComponent implements OnInit {
   message: string;
   currentMovie: IMovie;
   movieWithReviews: IMovie;
-<<<<<<< HEAD
   showForm: boolean = false;
-=======
->>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
+  editingBoolean: boolean = false;
+  noReviewsToShow: boolean = false;
+  hideCurrentMovieBoolean: boolean = false;
+  newReviewAdded: boolean = true;
   
 
   //Form for reviewer
@@ -73,8 +74,7 @@ export class MovieDetailsComponent implements OnInit {
   }
   getMovieReviews() {
     this._movieService.getMovieReviewsByMovieID().subscribe(value =>{this.movieReviews = value
-    console.log(value);
-    } );
+    console.log(value);}, (error)=>{this.setnoReviewsToShow()} );
   }
   getPeople(){
     this._movieService.getPersonList().subscribe((value)=> this.people = value);
@@ -83,10 +83,30 @@ export class MovieDetailsComponent implements OnInit {
   getCurrentMovie2(){
     this._movieService.getSingleMovieById2().subscribe((value)=> this.movieWithReviews = value);
   }
-<<<<<<< HEAD
   showFormToggle(){
     this.showForm = !this.showForm;
   }
-=======
->>>>>>> 778c0081a608bbb3815cad6732eb788ca5527f26
+  editing(){
+    this.editingBoolean = !this.editingBoolean;
+    console.log("The value is ", this.editingBoolean);
+  }
+  save(){
+    // Send movie with new details to edit it
+  }
+  remove(){
+    this._movieService.removeSingleMovie(this.movieWithReviews).subscribe((value)=>console.log(value));
+    this.removeMovieReviews();
+
+    this.hideCurrentMovie();
+  }
+  removeMovieReviews(){
+    this._movieService.removeMovieReviews(this.movieWithReviews.MovieID).subscribe((value)=>console.log(value));
+  }
+  setnoReviewsToShow(){
+    this.noReviewsToShow = !this.noReviewsToShow;
+    console.log(this.noReviewsToShow);
+  }
+  hideCurrentMovie(){
+    this.hideCurrentMovieBoolean = !this.hideCurrentMovieBoolean;
+  }
 }

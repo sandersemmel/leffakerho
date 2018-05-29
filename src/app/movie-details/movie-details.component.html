@@ -1,10 +1,13 @@
-<div class="container">
+<!--Displaying Current Movie-->
 <div [hidden]="hideCurrentMovieBoolean">
+<div class="container">
 <div *ngIf="movieWithReviews">
     <div class="card">
       <h5 class="card-header">{{movieWithReviews.MovieName}}</h5>
         <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating | number: '1.2-2'}}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">Arvosana {{movieWithReviews.Rating | number: '1.2-2'}} 
+            <p *ngIf="noReviews">Elokuvalla ei ole arvosteluja.</p>
+          </h6>
           <p class="card-text"></p>
           <button class="btn-primary" (click)="editing()" >Muokkaa</button>
           <button class="btn-primary" (click)="save()" >Tallenna</button>
@@ -55,7 +58,7 @@
               </div>
               <button class="btn btn-primary mb-2">Lisää uusi arvostelu</button>
               <div class="panel-footer">
-                <div class="alert alert-success">
+                <div class="alert alert-success" [hidden]="reviewNotSent">
                     <strong>Uusi arvostelu lisättiin.</strong>
                 </div>
               </div>
@@ -66,8 +69,8 @@
 </div>
 
 <br/>
-
-<div *ngIf="movieReviews" [(ngModel)]="movieReviews">
+<!--Reviews-->
+<div *ngIf="movieReviews" [(ngModel)]="movieReviews" name="movieReviews" ngDefaultControl >
     <div class="card" *ngFor="let movieReview of movieReviews">
         <div class="card-body">
           <h5 class="card-title">{{movieReview.ReviewerFirstName}} {{movieReview.ReviewerLastName}}</h5>

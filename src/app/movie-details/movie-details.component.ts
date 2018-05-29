@@ -32,6 +32,8 @@ export class MovieDetailsComponent implements OnInit {
   noReviewsToShow: boolean = false;
   hideCurrentMovieBoolean: boolean = false;
   newReviewAdded: boolean = true;
+  noReviews: boolean = true;
+  reviewNotSent: boolean = true;
   
 
   //Form for reviewer
@@ -50,10 +52,10 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   handleSubmit(formGroupMovieReview: NgForm){
-    console.log("works");
     console.log(formGroupMovieReview);
-    this._movieService.sendNewMovieReview(formGroupMovieReview);
-    // Send new review -->
+    this._movieService.sendNewMovieReview(formGroupMovieReview); // Send new review
+    this.displayNewReviewAdded();
+    formGroupMovieReview.reset();
   }
 
   ngOnInit() {
@@ -108,5 +110,9 @@ export class MovieDetailsComponent implements OnInit {
   }
   hideCurrentMovie(){
     this.hideCurrentMovieBoolean = !this.hideCurrentMovieBoolean;
+  }
+  displayNewReviewAdded(){
+    this.reviewNotSent = !this.reviewNotSent;
+    console.log("reviewnotsent", this.reviewNotSent);
   }
 }

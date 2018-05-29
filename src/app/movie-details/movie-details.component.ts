@@ -51,8 +51,11 @@ export class MovieDetailsComponent implements OnInit {
 
   }
 
-  handleSubmit(formGroupMovieReview: NgForm){
-    console.log(formGroupMovieReview);
+  handleSubmit(formGroupMovieReview: NgForm): void{
+    console.log("values from movie-details add new review form:");
+    console.log("ReviewText", formGroupMovieReview.value.movieReviewText);
+    console.log("reviewer", formGroupMovieReview.value.reviewer);
+    console.log("movieRating",formGroupMovieReview.value.movieRating);
     this._movieService.sendNewMovieReview(formGroupMovieReview); // Send new review
     this.displayNewReviewAdded();
     formGroupMovieReview.reset();

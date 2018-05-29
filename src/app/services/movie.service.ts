@@ -62,9 +62,9 @@ export class MovieService {
   sendNewMovieReview(formData: any){
     console.log(formData.movieReviewText);
     const body = new HttpParams()
-      .set('MovieReviewText', formData.movieReviewText)
-      .set('MovieRating', formData.movieRating)
-      .set('Reviewer', formData.reviewer)
+      .set('MovieReviewText', formData.value.movieReviewText)
+      .set('MovieRating', formData.value.movieRating)
+      .set('Reviewer', formData.value.reviewer)
       .set('MovieID', this.movieID.toString()) // Change later to the correct movie
     let headers = this._headers;
 

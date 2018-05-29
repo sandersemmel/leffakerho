@@ -37,7 +37,7 @@
     <div class="panel-heading">Lisää uusi arvostelu</div>
     <div class="panel-body">
       <div>
-          <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview.value)">
+          <form [formGroup]="formGroupMovieReview" (ngSubmit)="handleSubmit(formGroupMovieReview)">
               <div class="form-group">
                   <label for="movieReviewText">Arvostelu</label>
                   <br/>
@@ -56,8 +56,8 @@
                   <br/>
                   <input class="form-control" type="number" formControlName="movieRating" placeholder="Arvosana">
               </div>
-              <button class="btn btn-primary mb-2">Lisää uusi arvostelu</button>
               <div class="panel-footer">
+                  <button class="btn btn-primary mb-2">Lisää uusi arvostelu</button>
                 <div class="alert alert-success" [hidden]="reviewNotSent">
                     <strong>Uusi arvostelu lisättiin.</strong>
                 </div>

@@ -1,6 +1,35 @@
-<form>
-  <div class="form-group">
+<div class="container">
+  <form [formGroup]="personForm" (ngSubmit)="handleSubmit(personForm)" >
 
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h3>Lisää uusi henkilö</h3></div>
 
-  </div>
-</form>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Etunimi</label>
+                <input class="form-control" type="text" formControlName="firstName"/>
+              </div>
+                <div class="alert alert-warning" *ngIf="personForm.controls['firstName'].invalid && personForm.controls['firstName'].touched">
+                  <strong>Henkilön nimi tyhjä</strong>
+                </div>
+            
+              <label>Sukunimi</label>
+                <div class="form-group">
+                  <input class="form-control" type="text" formControlName="lastName"/>
+                </div>
+                <div class="alert alert-warning" *ngIf="personForm.controls['lastName'].invalid && personForm.controls['lastName'].touched">
+                  <strong>Henkilön sukunimi tyhjä</strong>
+                </div>
+          
+                <div class="panel-footer">
+                    <button class="btn btn-primary" type="submit" [disabled]="personForm.invalid">Lisää uusi henkilö</button>
+              
+                    <div *ngIf="isAddedBoolean" class="alert alert-success">
+                      <strong>Henkilö lisätty</strong>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+  </form>
+</div>

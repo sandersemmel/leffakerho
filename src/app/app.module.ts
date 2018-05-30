@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieService } from './services/movie.service';
+import {PersonserviceService} from './services/personservice.service';
 import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
 import { PersonformComponent } from './Forms/personform/personform.component';
 
@@ -41,7 +42,7 @@ import { PersonformComponent } from './Forms/personform/personform.component';
       {path: '', redirectTo: 'home', pathMatch: 'full'}
     ])
   ],
-  providers: [MovieService],
+  providers: [MovieService,PersonserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

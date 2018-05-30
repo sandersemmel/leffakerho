@@ -9,7 +9,7 @@
         <div class="panel-body">
           <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
           <div *ngIf="movies.length == 0">
-              <div [(ngModel)]="showSpinnerBoolean"> </div>
+              <div [(ngModel)]="showSpinnerBoolean" name="spinner" ngDefaultControl> </div>
           </div>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let movie of movies" (click)="editMovie(movie)">

@@ -1,5 +1,6 @@
 
 
+<input [(ngModel)]="search"/>
 <div class="container">
   <div class="row">
     <div class="col-xs-10 col-lg-10">
@@ -8,10 +9,9 @@
         <div class="panel-body">
           <button class="btn" (click)="refreshData()">Hae uusimmat elokuvat</button>
           <div *ngIf="movies.length == 0">
-            Ei elokuvia elokuvia
+              <div [(ngModel)]="showSpinnerBoolean"> </div>
           </div>
           <ul class="list-group">
-
             <li class="list-group-item" *ngFor="let movie of movies" (click)="editMovie(movie)">
               <h3>{{movie.MovieName}}</h3>
               <br />

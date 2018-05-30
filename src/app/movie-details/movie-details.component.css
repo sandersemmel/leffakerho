@@ -4,3 +4,9 @@ td {
 #movieRating{
   color: royalblue;
 }
+.btn-primary{
+  margin: 1%;
+}
+#showAddReviewForm{
+  margin-left: 75%;
+}

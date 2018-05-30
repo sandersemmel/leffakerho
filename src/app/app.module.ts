@@ -13,6 +13,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { MovieService } from './services/movie.service';
+import {Ng4LoadingSpinnerModule} from 'ng4-loading-spinner';
+import { PersonformComponent } from './Forms/personform/personform.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { MovieService } from './services/movie.service';
     NavbarComponent,
     MovieFormComponent,
     HomeComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    PersonformComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { MovieService } from './services/movie.service';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot(),
     RouterModule.forRoot([
       { path: 'movielist', component: MovielistComponent },
       { path: 'add', component: MovieFormComponent },

@@ -34,6 +34,7 @@ export class MovieDetailsComponent implements OnInit {
   newReviewAdded: boolean = true;
   noReviews: boolean = true;
   reviewNotSent: boolean = true;
+  alertMovieRemoveBoolean: boolean = true;
   
 
   //Form for reviewer
@@ -118,5 +119,17 @@ export class MovieDetailsComponent implements OnInit {
   displayNewReviewAdded(){
     this.reviewNotSent = !this.reviewNotSent;
     console.log("reviewnotsent", this.reviewNotSent);
+  }
+  removeMovie(){
+    this._movieService.removeSingleMovie(this.movieWithReviews).subscribe((value)=>console.log(value));
+    this.removeMovieReviews();
+    this.hideCurrentMovie();
+    this.alertMovieRemove();
+  }
+  alertMovieRemove(){
+    this.alertMovieRemoveBoolean = !this.alertMovieRemoveBoolean;
+  }
+  doNotRemoveMovie(){
+    this.alertMovieRemove();
   }
 }

@@ -1,6 +1,9 @@
 <!--Displaying Current Movie-->
 <div [hidden]="hideCurrentMovieBoolean">
 <div class="container">
+
+
+
 <div *ngIf="movieWithReviews">
     <div class="card">
       <h5 class="card-header">{{movieWithReviews.MovieName}}</h5>
@@ -9,10 +12,20 @@
             <p *ngIf="movieReviews.length == 0">Elokuvalla ei ole arvosanaa.</p>
           </h6>
           <p class="card-text"></p>
-          <button class="btn-primary" (click)="editing()" >Muokkaa</button>
-          <button class="btn-primary" (click)="save()" >Tallenna</button>
-          <button class="btn-danger" (click)="remove()">Poista</button>
-          
+
+        </div>
+        <div class="card-footer">
+            <button class="btn-primary" (click)="editing()">Muokkaa</button>
+            <button class="btn-primary" (click)="save()">Tallenna</button>
+            <button class="btn-danger" (click)="alertMovieRemove()">Poista</button>
+            <button id="showAddReviewForm" (click)="showFormToggle()" class="btn-primary">Näytä uuden arvostelun lisääminen</button>  
+
+            <!--Alert if user really wants to remove movie-->
+            <div class="alert alert-danger" [hidden]="alertMovieRemoveBoolean">
+                <label>Haluatko varmasti poistaa elokuvan?</label>
+                  <button (click)="removeMovie()">Kyllä</button>
+                  <button (click)="doNotRemoveMovie()">Ei</button>
+              </div>
         </div>
       </div>
 
@@ -22,11 +35,9 @@
       </div>
 </div>
 
-<br/>
 
-<button (click)="showFormToggle()" class="btn btn-primary">Näytä uuden arvostelun lisääminen</button>
 
-<br/>
+
 
 <div *ngIf="noReviewsToShow">
   <p>Elokuvalla ei ole arvosteluja</p>
@@ -66,7 +77,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <br/>
 <!--Reviews-->
@@ -80,8 +91,12 @@
       </div>
 </div>
 </div>
-
-<!--When Movie is removed-->
-<div class="alert alert-success" *ngIf="hideCurrentMovieBoolean">
-    <p>Elokuva poistettu</p>
+</div>
+<div class="container">
+  <!--When Movie is removed-->
+  <div class="alert alert-success" *ngIf="hideCurrentMovieBoolean">
+      <p>Elokuva poistettu</p>
   </div>
+</div>
+
+
